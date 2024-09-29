@@ -1,0 +1,16 @@
+﻿@page "/Clients"
+@using BlazorApp.Models
+
+<h1 class="text-center mb-5">danh sach khach hang</h1>
+
+<a class="btn btn-primary mb-5" href="/Clients/Create">Tạo Mới Thông Tin Khách Hàng</a>
+
+@inject HttpClient Http
+@code {
+  private List<Client>? clients;
+
+  protected override async Task OnInitializedAsync()
+  {
+    clients = await Http.GetFromJsonAsync<List<Client>>("https://localhost:7000/api/clients/");
+  }
+}
